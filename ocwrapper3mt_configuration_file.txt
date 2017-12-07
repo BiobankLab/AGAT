@@ -1,0 +1,23 @@
+# Adapter informations
+#adapter_TRIM_GALORE:AGATCGGAAGAGC
+adapter:AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+#alternativa:GTGACTGGAGTTCAGACGTGTGCTCTTCCGATC
+# Clearing parameters
+clear-quality:30
+clear-len:17
+clear-overlap:1
+# Location of clearing reference file
+clear-ref:/home/references/reference.fasta
+algorithm:bwtsw
+seedlen:1000
+threads:8
+overlap:1
+quality:30
+qb:33
+minlen:17
+# Sample informations, and location of fastq files
+sample:sample_ID,file1.fastq,file2.fastq
+# Location of output folder
+odir:/home/output/sample
+# Location of temporary folder
+temp_dir:/home/temp/sample
