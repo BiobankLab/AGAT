@@ -39,11 +39,16 @@ dirs = [d for d in os.listdir(cdict['basedir']) if os.path.isdir(os.path.join(cd
 for d in dirs:
 
     for r in os.walk(cdict['basedir']+'/'+d).next()[2]:
-        dl.append(d+'/'+r)
+        #print r
+        if( r.split('.')[-1] == 'fastq'):
+            #print r
+            dl.append(d+'/'+r)
     dirman(cdict['odir']+'/'+d)
     dirman(cdict['temp_dir']+'/'+d)
 
 cdict['fl'] = dl
 
+#print dl
+#print cdict['fl']
 
 subprocess.call(['luigi', '--module', 'aflow', 'map_damage', '--config', json.dumps(cdict)])

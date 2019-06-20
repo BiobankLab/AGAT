@@ -1,13 +1,16 @@
 # Location of clearing results folder
-basedir:/media/blul/HS/FASTQ/Genomy/aTB/In_silico_testing/DONE/filtrowanie_HG/n_bos/
+basedir:/path/to/source/dir
+# 
 # Location of output folder
-odir:/media/blul/HS/FASTQ/Genomy/aTB/In_silico_testing/DONE/filtrowanie_HG/PNAS
+odir:/path/to/output/dir
 # Location of temporary folder
-temp_dir:/media/blul/HS/FASTQ/Genomy/aTB/aTB-18018/TEMP/26
+temp_dir:/path/to/temp/dir
 algorithm:is
-# Location of indexed reference sequence folder
-fprefix:/media/blul/HS/FASTQ/Genomy/aTB/REF/PNAS
+# Location of indexed reference sequence folder and file name without extension
+#eg.:/mnt/ABC/FASTQ/REF/ref
+fprefix:/path/to/ref/sequence/without/file/extension
 # Location of reference sequence (fasta file)
-ref_file:/media/blul/HS/FASTQ/Genomy/aTB/REF/PNAS.fa
+#eg.:/mnt/ABC/FASTQ/REF/ref.fasta
+ref_file:path/to/ref/sequence/with/file/extension
 seedlen:1000
-cores:8
+cores:30

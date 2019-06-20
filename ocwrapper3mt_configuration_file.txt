@@ -4,20 +4,30 @@ adapter:AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
 #alternativa:GTGACTGGAGTTCAGACGTGTGCTCTTCCGATC
 # Clearing parameters
 clear-quality:30
+#cutadapt length used for clearing against human DNA
 clear-len:17
 clear-overlap:1
 # Location of clearing reference file
-clear-ref:/home/references/reference.fasta
+# 
+clear-ref:/path/to/human/ref/file
 algorithm:bwtsw
 seedlen:1000
-threads:8
+#  for best pefromance 
+#  number of threads = num. of samples * num. of quality entries
+#  or 
+#  number of threads = num. of samples
+threads:28
 overlap:1
 quality:30
 qb:33
-minlen:17
-# Sample informations, and location of fastq files
-sample:sample_ID,file1.fastq,file2.fastq
+#minlen - list of values separated by coma "," used by cutadapt to separate for sets
+minlen:25, 30
+# Sample informations, and location of fastq files directory
+sample:NAME,/path/to/dir/containing/fastq/files
+sample:NAME2,/path/to/dir/containing/fastq/files/for/NAME2/Sample
 # Location of output folder
-odir:/home/output/sample
+# structure to be created
+#/home/output/minlen/sample_ID
+odir:/path/to/output/dir/schema/above
 # Location of temporary folder
-temp_dir:/home/temp/sample
+temp_dir:/path/to/temp/dir/

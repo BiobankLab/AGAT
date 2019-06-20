@@ -5,6 +5,10 @@ import subprocess
 import json
 import os
 import pprint
+import sys
+
+#sys.path.append(os.path.dirname(sys.argv[0]))
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--version', help='display version number and exit', action='version', version='%(prog)s 0.3.1')
@@ -29,12 +33,13 @@ for r in content:
         if r.split(':')[0].strip() == 'sample':
             print '\nadding sample'
             temp = r.split(':')[1].split(',')
-            j = {'name':temp[0].strip(), 'files':[]}
-            for k in temp[1:]:
-                j['files'].append(k.strip())
-            cdict['samples'].append(j)
-            j = {}
+            #j = {'name':temp[0].strip(), 'dir':temp[1].strip()}
+            #for k in temp[1:]:
+            #    j['files'].append(k.strip())
+            cdict['samples'].append({'name':temp[0].strip(), 'dir':temp[1].strip()})
+            #j = {}
         else:
+            print r
             #cdict['samples'].append({'name':r.split(',')[0],'files':r.split}
             #print r
             cdict[r.split(':')[0].strip()] = r.split(':')[1].strip()
@@ -57,9 +62,10 @@ dirman(cdict['odir'])
 dirman(cdict['temp_dir'])
 dirman(cdict['temp_dir']+'/clearing')
 
+#output_dir/minlen/sample
 for q in cdict['minlen']:
     dirman(cdict['odir']+'/'+str(q))
-    dirman(cdict['temp_dir']+'/'+str(q))
+#    dirman(cdict['temp_dir']+'/'+str(q))
     
 for s in cdict['samples']:
     dirman(cdict['temp_dir']+'/clearing/'+s['name'])
@@ -68,5 +74,8 @@ for s in cdict['samples']:
 print '\n\n\n'
 pp = pprint.PrettyPrinter(indent=4)            
 pp.pprint(cdict)
-print ["PYTHONPATH='/home/blul/BIOIT/dwf'", 'luigi', '--module', 'dwf', 'map_damage', json.dumps(cdict)]
+#print ['luigi', '--module', 'ocut_3mt', 'cutadapt', '--config', json.dumps(cdict)]
+#print sys.path
+#subprocess.call(["PYTHONPATH='/home/blul/BIOIT/AGAT'"])
 subprocess.call(['luigi', '--module', 'ocut_3mt', 'cutadapt', '--config', json.dumps(cdict)])#cutadapt
+#subprocess.call(['luigi', '--module', 'ocut_3mt_pe', 'cutadapt', '--config', json.dumps(cdict)])#cutadapt
